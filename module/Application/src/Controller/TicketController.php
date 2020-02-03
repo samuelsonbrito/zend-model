@@ -16,4 +16,21 @@ class TicketController extends AbstractActionController
     {
         return new ViewModel();
     }
+
+    public function addAction()
+    {
+        return new ViewModel();
+    }
+
+    public function editAction()
+    {
+        return new ViewModel();
+    }
+
+    public function delAction()
+    {
+        return new ViewModel();
+    }
+
+
 }
