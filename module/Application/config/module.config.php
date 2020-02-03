@@ -29,8 +29,8 @@ return [
                 'options' => [
                     'route'    => '/ticket[/:action][/:id]',
                     'defaults' => [
-                        'controller' => Controller\DashboardController::class,
-                        'action'     => 'index',
+                        'controller' => Controller\TicketController::class,
+                        'action'     => 'add',
                     ],
                     'constraints' => [
                         'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -58,6 +58,9 @@ return [
             'application/dashboard/index' => __DIR__ . '/../view/application/dashboard/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'ticket/add' => __DIR__ . '/../view/ticket/dashboard/add.phtml',
+            'ticket/edit' => __DIR__ . '/../view/ticket/dashboard/edit.phtml',
+            'ticket/del' => __DIR__ . '/../view/ticket/dashboard/del.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',

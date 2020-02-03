@@ -32,5 +32,4 @@ class TicketController extends AbstractActionController
         return new ViewModel();
     }
 
-
 }

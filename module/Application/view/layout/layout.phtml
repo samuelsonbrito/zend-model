@@ -107,13 +107,13 @@
                     <li class="header">MAIN NAVIGATION</li>
 
                     <li>
-                        <a href="dashboard.html">
+                        <a href="<?= $this->url('dashboard', ['Controller' => 'Dashboard', 'action' => 'index']) ?>">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="plus.html">
+                        <a href="<?= $this->url('ticket', ['Controller' => 'Ticket', 'action' => 'add']) ?>">
                             <i class="fa fa-plus"></i> <span>Novo Ticket</span>
                         </a>
                     </li>

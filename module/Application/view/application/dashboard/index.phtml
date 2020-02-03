@@ -64,8 +64,8 @@
                             <td>01/01/2019</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="edit.html" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
-                                    <a href="delete.html" class="btn btn-danger"><i class="fa fa-trash-o"></i> Excluir</a>
+                                    <a href="<?= $this->url('ticket', ['Controller' => 'Ticket', 'action' => 'edit', 'id' => 1]) ?>" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
+                                    <a href="<?= $this->url('ticket', ['Controller' => 'Ticket', 'action' => 'del', 'id' => 1]) ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Excluir</a>
                                 </div>
                             </td>
                         </tr>    
