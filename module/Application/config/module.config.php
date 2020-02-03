@@ -14,31 +14,37 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 return [
     'router' => [
         'routes' => [
-            'home' => [
+            'dashboard' => [
                 'type'    => Literal::class,
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\DashboardController::class,
                         'action'     => 'index',
                     ],
                 ],
             ],
-            'application' => [
+            'ticket' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route'    => '/ticket[/:action][/:id]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\DashboardController::class,
                         'action'     => 'index',
                     ],
+                    'constraints' => [
+                        'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '\d+',
+                    ]
                 ],
             ],
         ],
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\DashboardController::class => InvokableFactory::class,
+            Controller\TicketController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
