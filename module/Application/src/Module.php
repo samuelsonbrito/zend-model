@@ -7,6 +7,12 @@
 
 namespace Application;
 
+use Zend\Db\Adapter\Adapter;
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\db\ResultSet\ResultSet;
+use Zend\Db\Adapter\Driver\ResultInterface;
+
 class Module
 {
     const VERSION = '3.1.4dev';
@@ -15,4 +21,5 @@ class Module
     {
         return include __DIR__ . '/../config/module.config.php';
     }
+
 }
