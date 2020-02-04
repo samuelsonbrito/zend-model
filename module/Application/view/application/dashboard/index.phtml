@@ -21,55 +21,60 @@
                             <i class="fa fa-times"></i></button>
                     </div>
                 </div>
-                <div class="box-body">        
-                    <table class="table table-bordered table-striped table-hover table-condensed">
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Titulo</th>
-                            <th>Prioridade</th>
-                            <th>Data</th>
-                            <th>Ação</th>
-                        </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Primeiro Ticket</td>
-                                    <td><span class="badge bg-blue">Baixa</span></td>          
-                                <td>01/01/2019</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="edit.html" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
-                                        <a href="delete.html" class="btn btn-danger"><i class="fa fa-trash-o"></i> Excluir</a>
-                                    </div>
-                                </td>
-                            </tr>   
-                            
-                            <tr>
-                                <td>2</td>
-                                <td>Segundo Ticket</td>
+                <div class="box-body">
+                <?php
+             echo $this->flashMessenger()->render('error', ['alert alert-danger alert-dismissible']);
+             echo $this->flashMessenger()->render('success', ['alert alert-success alert-dismissible']);
+            ?>        
+                <table class="table table-bordered table-striped table-hover table-condensed">
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Titulo</th>
+                    <th>Prioridade</th>
+                    <th>Data</th>
+                    <th>Ação</th>
+                </tr>
+                <?php
+                /**
+                 * @var $ticket \Application\Model\Ticket
+                 */
+                ?>
+                <?php foreach ($this->paginator as $ticket): ?>
+                    <tr>
+                        <td><?= $this->escapeHtml($ticket->id); ?></td>
+                        <td><?= $this->escapeHtml($ticket->name); ?></td>
+                        <?php if ($ticket->priority == \Application\Model\Ticket::LOW): ?>
+                            <td><span class="badge bg-blue"><?= \Application\Model\Ticket::getPriority($ticket->priority )?></span></td>
+                        <?php elseif ($ticket->priority == \Application\Model\Ticket::MEDIUM): ?>
+                            <td><span class="badge bg-yellow"><?= \Application\Model\Ticket::getPriority($ticket->priority )?></span></td>
+                        <?php else: ?>
+                            <td><span class="badge bg-red"><?= \Application\Model\Ticket::getPriority($ticket->priority )?></span></td>
+                        <?php endif; ?>
 
-                                    <td><span class="badge bg-yellow">Médio</span></td>         
-                                <td>01/01/2019</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="edit.html" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
-                                        <a href="delete.html" class="btn btn-danger"><i class="fa fa-trash-o"></i> Excluir</a>
-                                    </div>
-                                </td>
-                            </tr>    
 
-                        <tr>
-                            <td>3</td>
-                            <td>Terceiro Ticket</td>
-                                <td><span class="badge bg-red">Alto</span></td>            
-                            <td>01/01/2019</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="<?= $this->url('ticket', ['Controller' => 'Ticket', 'action' => 'edit', 'id' => 1]) ?>" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
-                                    <a href="<?= $this->url('ticket', ['Controller' => 'Ticket', 'action' => 'del', 'id' => 1]) ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Excluir</a>
-                                </div>
-                            </td>
-                        </tr>    
-                    </table>        
+                        <td><?= $this->dateFormat(new \DateTime($ticket->created_at), IntlDateFormatter::MEDIUM); ?></td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="<?= $this->url('ticket', ['controller' => 'Ticket', 'action' => 'edit', 'id' => $ticket->id]); ?>" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
+                                <a href="<?= $this->url('ticket', ['controller' => 'Ticket', 'action' => 'del', 'id' => $ticket->id]); ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+
+            </table>
+
+                    <?= $this->paginationControl(
+                    // The paginator object:
+                        $this->paginator,
+                        // The scrolling style:
+                        'sliding',
+                        // The partial to use to render the control:
+                        'application/ticket/paginator',
+                        // The route to link to when a user clicks a control link:
+                        ['route' => 'dashboard']
+                    ) ?>
+
                 </div>
                 <!-- /.box-body -->
         

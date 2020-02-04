@@ -65,6 +65,12 @@ return [
     // Initial configuration with which to seed the ServiceManager.
     // Should be compatible with Zend\ServiceManager\Config.
     'service_manager' => [
-        Adapter::class => AdapterServiceFactory::class,
+        'aliases' => [
+            'translator' => 'MvcTranslator',
+        ],
+        'factories' => [
+            Adapter::class => AdapterServiceFactory::class,
+            //AuthenticationService::class => AuthenticationFactory::class
+        ]
     ],
 ];

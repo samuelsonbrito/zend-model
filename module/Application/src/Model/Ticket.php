@@ -1,11 +1,13 @@
-<?php 
+<?php
 
-namespace Aplication\Model;
+namespace Application\Model;
 
-use Zend\Hydrator\Reflection;
+use Core\Model\CoreModelTrait;
 
-class Ticket 
+class Ticket
 {
+    use CoreModelTrait;
+
     const LOW = 0;
     const MEDIUM = 1;
     const HIGH = 2;
@@ -14,46 +16,30 @@ class Ticket
     public $name;
     public $description;
     public $priority;
-    public $create_at;
+    public $created_at;
     public $user;
-
-    public function exchangeArray(array $data)
-    {
-        (new Reflection())->hydrate($data, $this);
-    }
-
-    public function getArrayCopy()
-    {
-        return (new Reflection())->extract($data, $this);
-    }
 
     public static function getPriorityDescription()
     {
         return [
             self::LOW => 'Baixo',
-            self::MEDIUM => 'Medio',
+            self::MEDIUM => 'Médio',
             self::HIGH => 'Alto',
-
         ];
     }
 
-    public static function getPrioriry($priority)
+    public static function getPriority($priority)
     {
-        switch($priority){
-
+        switch ($priority) {
             case self::LOW:
                 return 'Baixo';
-            break;
-
+                break;
             case self::MEDIUM:
-                return 'Medio';
-            break;
-
+                return 'Médio';
+                break;
             case self::HIGH:
                 return 'Alto';
-            break;
+                break;
         }
     }
-
-
 }
