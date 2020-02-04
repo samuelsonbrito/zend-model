@@ -27,7 +27,7 @@ class Ticket
         return (new Reflection())->extract($data, $this);
     }
 
-    public function getPriorityDescription()
+    public static function getPriorityDescription()
     {
         return [
             self::LOW => 'Baixo',
@@ -37,7 +37,7 @@ class Ticket
         ];
     }
 
-    public function getPrioriry($priority)
+    public static function getPrioriry($priority)
     {
         switch($priority){
 

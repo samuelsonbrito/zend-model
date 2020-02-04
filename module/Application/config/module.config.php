@@ -47,6 +47,10 @@ return [
             Controller\TicketController::class => InvokableFactory::class,
         ],
     ],
+    'service_manager' =>[
+        TicketTable::class => TicketTableFactory::class,
+        AttachmentTable::class => AttachmentTableFactory::class,
+    ],
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
